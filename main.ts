@@ -4,7 +4,7 @@ namespace SpriteKind {
 controller.player1.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
     if (PistolEquippedplayer1 == true) {
         Xdirrection = 0
-        Ydirrection = -100
+        Ydirrection = -200
     }
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
@@ -14,7 +14,7 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSp
 })
 controller.player1.onButtonEvent(ControllerButton.Right, ControllerButtonEvent.Pressed, function () {
     if (PistolEquippedplayer1 == true) {
-        Xdirrection = 100
+        Xdirrection = 200
         Ydirrection = 0
     }
 })
@@ -41,91 +41,6 @@ controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
         music.play(music.createSoundEffect(WaveShape.Noise, 1066, 1, 255, 255, 50, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
     }
 })
-function ProjectileFunction () {
-    if (Player1.x >= 75) {
-        Bullet = sprites.createProjectileFromSprite(img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . 5 5 . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `, Player1, 100, 0)
-    } else {
-        if (Player1.x <= 75) {
-            Bullet = sprites.createProjectileFromSprite(img`
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . 5 5 . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                `, Player1, -100, 0)
-        } else {
-            if (Player1.x >= 55) {
-                Bullet = sprites.createProjectileFromSprite(img`
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . 5 . . . . . . . . 
-                    . . . . . . . 5 . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    `, Player1, 0, 100)
-            } else {
-                if (Player1.x <= 55) {
-                    Bullet = sprites.createProjectileFromSprite(img`
-                        . . . . . . . . . . . . . . . . 
-                        . . . . . . . . 5 . . . . . . . 
-                        . . . . . . . . 5 . . . . . . . 
-                        . . . . . . . . . . . . . . . . 
-                        . . . . . . . . . . . . . . . . 
-                        . . . . . . . . . . . . . . . . 
-                        . . . . . . . . . . . . . . . . 
-                        . . . . . . . . . . . . . . . . 
-                        . . . . . . . . . . . . . . . . 
-                        . . . . . . . . . . . . . . . . 
-                        . . . . . . . . . . . . . . . . 
-                        . . . . . . . . . . . . . . . . 
-                        . . . . . . . . . . . . . . . . 
-                        . . . . . . . . . . . . . . . . 
-                        . . . . . . . . . . . . . . . . 
-                        . . . . . . . . . . . . . . . . 
-                        `, Player1, 0, -100)
-                }
-            }
-        }
-    }
-}
 function PistolFunction () {
     Pistol = sprites.create(img`
         . . . . . . . . . . . . . . . . 
@@ -241,7 +156,7 @@ function Player1_Function () {
         . . . . . f f . f f . . . . . . 
         `, SpriteKind.Player)
     info.player1.setLife(3)
-    controller.player1.moveSprite(Player1, 70, 70)
+    controller.player1.moveSprite(Player1, 85, 85)
     info.player1.setScore(0)
     characterAnimations.loopFrames(
     Player1,
@@ -649,14 +564,14 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
 })
 controller.player1.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pressed, function () {
     if (PistolEquippedplayer1 == true) {
-        Xdirrection = -100
+        Xdirrection = -200
         Ydirrection = 0
     }
 })
 controller.player1.onButtonEvent(ControllerButton.Down, ControllerButtonEvent.Pressed, function () {
     if (PistolEquippedplayer1 == true) {
         Xdirrection = 0
-        Ydirrection = 100
+        Ydirrection = 200
     }
 })
 let Zombie: Sprite = null
